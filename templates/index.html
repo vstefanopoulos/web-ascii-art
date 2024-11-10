@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Generator</title>
+    <link href="/static/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <h1>ASCII Art Generator</h1>
+    <form class="zoom-area" action="/ascii-art" method="POST">
+        <h2>Enter text</h2>
+        <textarea class="textbox" id="text" name="text" required placeholder="Type your text here...">{{.Text}}</textarea>
+        <h2>Choose banner</h2>   
+        <div class="radio-group">
+            <div class="radio-item">
+                <input type="radio" id="standard" name="banner" value="standard" checked {{if eq .Banner "standard"}}checked{{end}}>
+                <label  for="standard">Standard</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" id="shadow" name="banner" value="shadow" {{if eq .Banner "shadow"}}checked{{end}}>
+                <label for="shadow">Shadow</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" id="thinkertoy" name="banner" value="thinkertoy" {{if eq .Banner "thinkertoy"}}checked{{end}}>
+                <label  for="thinkertoy">Thinkertoy</label>
+            </div>        
+        </div>
+        <h2>Choose alignment</h2>
+        <select id="alignment" name="alignment">
+            <option value="left" checked {{if eq .Alignment "left"}}selected{{end}}>Left</option>
+            <option value="center" {{if eq .Alignment "center"}}selected{{end}}>Center</option>
+            <option value="right" {{if eq .Alignment "right"}}selected{{end}}>Right</option>
+            <option value="justify" {{if eq .Alignment "justify"}}selected{{end}}>Justify</option>
+        </select>
+        <div class="button-container">
+            <button type="submit">Generate ASCII Art</button>
+        </div>
+        
+    </form>
+    <div class="result">
+        <pre>{{.Result}}</pre>
+    </div>
+</body>
+</html>
